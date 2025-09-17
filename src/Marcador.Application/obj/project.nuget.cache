@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Dxy3Z3va9gQ=",
+  "dgSpecHash": "CZBTFKbimQ4=",
   "success": true,
   "projectFilePath": "C:\\proyectos\\MarcadorBaloncesto-Backend\\src\\Marcador.Application\\Marcador.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\pluis\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
+    "C:\\Users\\pluis\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
+    "C:\\Users\\pluis\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512"
+  ],
   "logs": []
 }
