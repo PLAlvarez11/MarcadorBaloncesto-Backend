@@ -1,0 +1,16 @@
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\bin\Debug\net8.0\Marcador.Application.deps.json
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\bin\Debug\net8.0\Marcador.Application.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\bin\Debug\net8.0\Marcador.Application.pdb
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\bin\Debug\net8.0\Marcador.Domain.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\bin\Debug\net8.0\Marcador.Domain.pdb
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.Application.csproj.AssemblyReference.cache
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.Application.AssemblyInfoInputs.cache
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.Application.AssemblyInfo.cs
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.Application.csproj.CoreCompileInputs.cache
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.Application.sourcelink.json
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.78CAFAAB.Up2Date
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.Application.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\refint\Marcador.Application.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\Marcador.Application.pdb
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Application\obj\Debug\net8.0\ref\Marcador.Application.dll

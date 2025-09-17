@@ -1,0 +1,12 @@
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\bin\Debug\net8.0\Marcador.Domain.deps.json
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\bin\Debug\net8.0\Marcador.Domain.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\bin\Debug\net8.0\Marcador.Domain.pdb
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\Marcador.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\Marcador.Domain.AssemblyInfoInputs.cache
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\Marcador.Domain.AssemblyInfo.cs
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\Marcador.Domain.csproj.CoreCompileInputs.cache
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\Marcador.Domain.sourcelink.json
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\Marcador.Domain.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\refint\Marcador.Domain.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\Marcador.Domain.pdb
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Domain\obj\Debug\net8.0\ref\Marcador.Domain.dll
