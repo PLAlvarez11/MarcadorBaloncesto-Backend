@@ -1,4 +1,5 @@
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\bin\Debug\net8.0\Marcador.Infrastructure.deps.json
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\bin\Debug\net8.0\Marcador.Infrastructure.runtimeconfig.json
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\bin\Debug\net8.0\Marcador.Infrastructure.dll
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\bin\Debug\net8.0\Marcador.Infrastructure.pdb
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\bin\Debug\net8.0\Marcador.Domain.dll
@@ -13,6 +14,5 @@ C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\obj\Debug\ne
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\obj\Debug\net8.0\Marcador.Infrastructure.dll
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\obj\Debug\net8.0\refint\Marcador.Infrastructure.dll
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\obj\Debug\net8.0\Marcador.Infrastructure.pdb
-C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\obj\Debug\net8.0\ref\Marcador.Infrastructure.dll
-C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\bin\Debug\net8.0\Marcador.Infrastructure.runtimeconfig.json
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\obj\Debug\net8.0\Marcador.Infrastructure.genruntimeconfig.cache
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Infrastructure\obj\Debug\net8.0\ref\Marcador.Infrastructure.dll
