@@ -29,6 +29,8 @@ public static class DependencyInjection
         services.AddSingleton(jwt);
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IEquipoService, EquipoService>();
+        services.AddScoped<IJugadorService, JugadorService>();
         return services;
     }
 }
