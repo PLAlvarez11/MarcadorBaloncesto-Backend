@@ -1167,6 +1167,7 @@
       "Marcador.Infrastructure/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "Marcador.Application": "1.0.0",
           "Marcador.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.9",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.9",

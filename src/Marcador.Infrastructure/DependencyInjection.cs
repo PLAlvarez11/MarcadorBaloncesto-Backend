@@ -5,6 +5,8 @@ using Marcador.Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Marcador.Application.Abstractions.Services;  
+using Marcador.Infrastructure.Services;          
 
 namespace Marcador.Infrastructure;
 
@@ -26,7 +28,7 @@ public static class DependencyInjection
         config.GetSection("Jwt").Bind(jwt);
         services.AddSingleton(jwt);
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
-
+        services.AddScoped<IAuthService, AuthService>();
         return services;
     }
 }
