@@ -23,9 +23,9 @@ public class AuthService : IAuthService
     public async Task<AuthResponseDto?> LoginAsync(LoginRequestDto dto)
     {
         var user = await _db.Usuarios
-            .Include(u => u.Rol)
-                .ThenInclude(r => r.RolAccesos)
-                    .ThenInclude(ra => ra.Acceso)
+            .Include(u => u.Rol!)
+            .ThenInclude(r => r.RolAccesos)
+            .ThenInclude(ra => ra.Acceso)
             .FirstOrDefaultAsync(u => u.NombreUsuario == dto.Username);
 
         if (user is null) return null;

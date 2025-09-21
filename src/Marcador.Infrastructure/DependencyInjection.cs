@@ -31,6 +31,7 @@ public static class DependencyInjection
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IEquipoService, EquipoService>();
         services.AddScoped<IJugadorService, JugadorService>();
+        services.AddScoped<IPartidoService, PartidoService>();
         return services;
     }
 }
