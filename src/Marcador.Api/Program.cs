@@ -35,22 +35,7 @@ builder.Services
         };
     });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminOnly", p => p.RequireRole("ADMIN"));
-
-    options.AddPolicy("Equipos.Write", p => p.RequireClaim("access", "Equipos.Write"));
-    options.AddPolicy("AdminOnly", p => p.RequireRole("ADMIN"));
-
-    options.AddPolicy("Equipos.Read", p => p.RequireClaim("access", "Equipos.Read"));
-    options.AddPolicy("Equipos.Write", p => p.RequireClaim("access", "Equipos.Write"));
-
-    options.AddPolicy("Jugadores.Read", p => p.RequireClaim("access", "Jugadores.Read"));
-    options.AddPolicy("Jugadores.Write", p => p.RequireClaim("access", "Jugadores.Write"));
-
-    options.AddPolicy("Partidos.Read", p => p.RequireClaim("access", "Partidos.Read"));
-    options.AddPolicy("Partidos.Write", p => p.RequireClaim("access", "Partidos.Write"));
-});
+builder.Services.AddAuthorization(AuthorizationPolicies.AddPolicies);
 
 builder.Services.AddControllers();
 

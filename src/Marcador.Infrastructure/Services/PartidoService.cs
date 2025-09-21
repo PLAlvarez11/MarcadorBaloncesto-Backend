@@ -97,64 +97,86 @@ public class PartidoService : IPartidoService
     }
 
     public async Task<bool> SumarPuntosAsync(int partidoId, int equipo, int puntos)
+    {
+        var partido = await _db.Partidos.FindAsync(partidoId);
+        if (partido == null) return false;
+
+        if (equipo == 1) partido.PuntajeEquipo1 += puntos;
+        else if (equipo == 2) partido.PuntajeEquipo2 += puntos;
+
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> RestarPuntosAsync(int partidoId, int equipo, int puntos)
+    {
+        var partido = await _db.Partidos.FindAsync(partidoId);
+        if (partido == null) return false;
+
+        if (equipo == 1) partido.PuntajeEquipo1 = Math.Max(0, partido.PuntajeEquipo1 - puntos);
+        else if (equipo == 2) partido.PuntajeEquipo2 = Math.Max(0, partido.PuntajeEquipo2 - puntos);
+
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> RegistrarFaltaAsync(int partidoId, int equipo)
+    {
+        var partido = await _db.Partidos.FindAsync(partidoId);
+        if (partido == null) return false;
+
+        if (equipo == 1) partido.FaltasEquipo1++;
+        else if (equipo == 2) partido.FaltasEquipo2++;
+
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> AvanzarCuartoAsync(int partidoId)
+    {
+        var partido = await _db.Partidos.FindAsync(partidoId);
+        if (partido == null) return false;
+
+        if (partido.CuartoActual < 4) partido.CuartoActual++;
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> ReiniciarMarcadorAsync(int partidoId)
+    {
+        var partido = await _db.Partidos.FindAsync(partidoId);
+        if (partido == null) return false;
+
+        partido.PuntajeEquipo1 = 0;
+        partido.PuntajeEquipo2 = 0;
+        partido.FaltasEquipo1 = 0;
+        partido.FaltasEquipo2 = 0;
+        partido.CuartoActual = 1;
+
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
+public async Task<PartidoDto?> GetMarcadorAsync(int partidoId)
 {
-    var partido = await _db.Partidos.FindAsync(partidoId);
-    if (partido == null) return false;
-
-    if (equipo == 1) partido.PuntajeEquipo1 += puntos;
-    else if (equipo == 2) partido.PuntajeEquipo2 += puntos;
-
-    await _db.SaveChangesAsync();
-    return true;
+    return await _db.Partidos
+        .Include(p => p.Equipo1)
+        .Include(p => p.Equipo2)
+        .Where(p => p.Id == partidoId)
+        .Select(p => new PartidoDto
+        {
+            Id = p.Id,
+            Equipo1Id = p.Equipo1Id,
+            Equipo1Nombre = p.Equipo1!.Nombre,
+            Equipo2Id = p.Equipo2Id,
+            Equipo2Nombre = p.Equipo2!.Nombre,
+            PuntajeEquipo1 = p.PuntajeEquipo1,
+            PuntajeEquipo2 = p.PuntajeEquipo2,
+            FaltasEquipo1 = p.FaltasEquipo1,
+            FaltasEquipo2 = p.FaltasEquipo2,
+            CuartoActual = p.CuartoActual,
+            FechaPartido = p.FechaPartido
+        })
+        .FirstOrDefaultAsync();
 }
-
-public async Task<bool> RestarPuntosAsync(int partidoId, int equipo, int puntos)
-{
-    var partido = await _db.Partidos.FindAsync(partidoId);
-    if (partido == null) return false;
-
-    if (equipo == 1) partido.PuntajeEquipo1 = Math.Max(0, partido.PuntajeEquipo1 - puntos);
-    else if (equipo == 2) partido.PuntajeEquipo2 = Math.Max(0, partido.PuntajeEquipo2 - puntos);
-
-    await _db.SaveChangesAsync();
-    return true;
-}
-
-public async Task<bool> RegistrarFaltaAsync(int partidoId, int equipo)
-{
-    var partido = await _db.Partidos.FindAsync(partidoId);
-    if (partido == null) return false;
-
-    if (equipo == 1) partido.FaltasEquipo1++;
-    else if (equipo == 2) partido.FaltasEquipo2++;
-
-    await _db.SaveChangesAsync();
-    return true;
-}
-
-public async Task<bool> AvanzarCuartoAsync(int partidoId)
-{
-    var partido = await _db.Partidos.FindAsync(partidoId);
-    if (partido == null) return false;
-
-    if (partido.CuartoActual < 4) partido.CuartoActual++;
-    await _db.SaveChangesAsync();
-    return true;
-}
-
-public async Task<bool> ReiniciarMarcadorAsync(int partidoId)
-{
-    var partido = await _db.Partidos.FindAsync(partidoId);
-    if (partido == null) return false;
-
-    partido.PuntajeEquipo1 = 0;
-    partido.PuntajeEquipo2 = 0;
-    partido.FaltasEquipo1 = 0;
-    partido.FaltasEquipo2 = 0;
-    partido.CuartoActual = 1;
-
-    await _db.SaveChangesAsync();
-    return true;
-}
-
 }

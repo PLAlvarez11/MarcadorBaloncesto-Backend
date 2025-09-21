@@ -14,4 +14,5 @@ public interface IPartidoService
     Task<bool> RegistrarFaltaAsync(int partidoId, int equipo);
     Task<bool> AvanzarCuartoAsync(int partidoId);
     Task<bool> ReiniciarMarcadorAsync(int partidoId);
+    Task<PartidoDto?> GetMarcadorAsync(int partidoId);
 }

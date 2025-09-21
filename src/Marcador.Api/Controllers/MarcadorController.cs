@@ -55,4 +55,13 @@ public class MarcadorController : ControllerBase
         var ok = await _partidos.ReiniciarMarcadorAsync(partidoId);
         return ok ? Ok() : NotFound();
     }
+
+    [HttpGet("{partidoId}")]
+    [Authorize(Policy = "Partidos.Read")]
+    public async Task<IActionResult> GetMarcador(int partidoId)
+    {
+        var marcador = await _partidos.GetMarcadorAsync(partidoId);
+        if (marcador == null) return NotFound();
+        return Ok(marcador);
+    }
 }
