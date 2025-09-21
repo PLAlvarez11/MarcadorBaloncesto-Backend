@@ -6,6 +6,8 @@ using Marcador.Infrastructure.Seed;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using FluentValidation;
+using Marcador.Application.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +40,7 @@ builder.Services
 builder.Services.AddAuthorization(AuthorizationPolicies.AddPolicies);
 
 builder.Services.AddControllers();
+builder.Services.AddValidatorsFromAssemblyContaining<EquipoCreateValidator>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
