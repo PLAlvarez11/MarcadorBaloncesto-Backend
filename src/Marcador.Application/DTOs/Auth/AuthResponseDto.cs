@@ -7,4 +7,5 @@ public class AuthResponseDto
     public string Username { get; set; } = null!;
     public string Role { get; set; } = null!;
     public IEnumerable<string> Accesos { get; set; } = Enumerable.Empty<string>();
+    public string RefreshToken { get; set; } = null!;
 }

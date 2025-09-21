@@ -54,6 +54,9 @@ C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Micros
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Scrutor.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Filters.dll
+C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\proyectos\MarcadorBaloncesto-Backend\src\Marcador.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

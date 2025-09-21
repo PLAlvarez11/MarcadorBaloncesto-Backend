@@ -16,7 +16,8 @@ public class MarcadorDbContext : DbContext
     public DbSet<Jugador> Jugadores => Set<Jugador>();
     public DbSet<Partido> Partidos => Set<Partido>();
     public DbSet<Logo> Logos => Set<Logo>();
-
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(MarcadorDbContext).Assembly);

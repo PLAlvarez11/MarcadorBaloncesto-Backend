@@ -251,6 +251,47 @@ namespace Marcador.Infrastructure.Migrations
                     b.ToTable("Partidos", (string)null);
                 });
 
+            modelBuilder.Entity("Marcador.Domain.Entities.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Expira")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FechaEdicion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Revocado")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("UsuarioCreacionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UsuarioEdicionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("RefreshTokens", (string)null);
+                });
+
             modelBuilder.Entity("Marcador.Domain.Entities.Rol", b =>
                 {
                     b.Property<int>("Id")
@@ -402,6 +443,17 @@ namespace Marcador.Infrastructure.Migrations
                     b.Navigation("Equipo1");
 
                     b.Navigation("Equipo2");
+                });
+
+            modelBuilder.Entity("Marcador.Domain.Entities.RefreshToken", b =>
+                {
+                    b.HasOne("Marcador.Domain.Entities.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Marcador.Domain.Entities.RolAcceso", b =>
