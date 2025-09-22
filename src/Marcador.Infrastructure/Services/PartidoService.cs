@@ -15,29 +15,6 @@ public class PartidoService : IPartidoService
         _db = db;
     }
 
-    public async Task<IEnumerable<PartidoDto>> GetHistorialAsync()
-    {
-        return await _db.Partidos
-            .Include(p => p.Equipo1)
-            .Include(p => p.Equipo2)
-            .OrderByDescending(p => p.FechaPartido)
-            .Select(p => new PartidoDto
-            {
-                Id = p.Id,
-                Equipo1Id = p.Equipo1Id,
-                Equipo1Nombre = p.Equipo1!.Nombre,
-                Equipo2Id = p.Equipo2Id,
-                Equipo2Nombre = p.Equipo2!.Nombre,
-                PuntajeEquipo1 = p.PuntajeEquipo1,
-                PuntajeEquipo2 = p.PuntajeEquipo2,
-                FaltasEquipo1 = p.FaltasEquipo1,
-                FaltasEquipo2 = p.FaltasEquipo2,
-                CuartoActual = p.CuartoActual,
-                FechaPartido = p.FechaPartido
-            })
-            .ToListAsync();
-    }
-
     public async Task<PartidoDto?> GetByIdAsync(int id)
     {
         return await _db.Partidos
@@ -157,26 +134,66 @@ public class PartidoService : IPartidoService
         return true;
     }
 
-public async Task<PartidoDto?> GetMarcadorAsync(int partidoId)
-{
-    return await _db.Partidos
-        .Include(p => p.Equipo1)
-        .Include(p => p.Equipo2)
-        .Where(p => p.Id == partidoId)
-        .Select(p => new PartidoDto
-        {
-            Id = p.Id,
-            Equipo1Id = p.Equipo1Id,
-            Equipo1Nombre = p.Equipo1!.Nombre,
-            Equipo2Id = p.Equipo2Id,
-            Equipo2Nombre = p.Equipo2!.Nombre,
-            PuntajeEquipo1 = p.PuntajeEquipo1,
-            PuntajeEquipo2 = p.PuntajeEquipo2,
-            FaltasEquipo1 = p.FaltasEquipo1,
-            FaltasEquipo2 = p.FaltasEquipo2,
-            CuartoActual = p.CuartoActual,
-            FechaPartido = p.FechaPartido
-        })
-        .FirstOrDefaultAsync();
-}
+    public async Task<PartidoDto?> GetMarcadorAsync(int partidoId)
+    {
+        return await _db.Partidos
+            .Include(p => p.Equipo1)
+            .Include(p => p.Equipo2)
+            .Where(p => p.Id == partidoId)
+            .Select(p => new PartidoDto
+            {
+                Id = p.Id,
+                Equipo1Id = p.Equipo1Id,
+                Equipo1Nombre = p.Equipo1!.Nombre,
+                Equipo2Id = p.Equipo2Id,
+                Equipo2Nombre = p.Equipo2!.Nombre,
+                PuntajeEquipo1 = p.PuntajeEquipo1,
+                PuntajeEquipo2 = p.PuntajeEquipo2,
+                FaltasEquipo1 = p.FaltasEquipo1,
+                FaltasEquipo2 = p.FaltasEquipo2,
+                CuartoActual = p.CuartoActual,
+                FechaPartido = p.FechaPartido
+            })
+            .FirstOrDefaultAsync();
+    }
+
+    public async Task<IEnumerable<PartidoHistorialDto>> GetHistorialAsync()
+    {
+        return await _db.Partidos
+            .Include(p => p.Equipo1)
+            .Include(p => p.Equipo2)
+            .Where(p => p.Terminado == true) // 👈 filtro explícito
+            .OrderByDescending(p => p.FechaPartido)
+            .Select(p => new PartidoHistorialDto
+            {
+                Id = p.Id,
+                Equipo1 = p.Equipo1!.Nombre,
+                Equipo2 = p.Equipo2!.Nombre,
+                PuntajeEquipo1 = p.PuntajeEquipo1,
+                PuntajeEquipo2 = p.PuntajeEquipo2,
+                Fecha = p.FechaPartido
+            })
+            .ToListAsync();
+    }
+
+    public async Task<bool> MarcarTerminadoAsync(int partidoId)
+    {
+        var partido = await _db.Partidos.FirstOrDefaultAsync(p => p.Id == partidoId);
+        if (partido == null) return false;
+
+        partido.Terminado = true;
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> UpdateCuartoAsync(int partidoId, int cuarto)
+    {
+        var partido = await _db.Partidos.FirstOrDefaultAsync(p => p.Id == partidoId);
+        if (partido == null) return false;
+
+        partido.CuartoActual = cuarto;
+        await _db.SaveChangesAsync();
+        return true;
+    }
+
 }

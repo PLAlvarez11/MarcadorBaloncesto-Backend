@@ -18,6 +18,8 @@ public class Partido : AuditableEntity
     public int FaltasEquipo1 { get; set; }
     public int FaltasEquipo2 { get; set; }
 
-    public int CuartoActual { get; set; } 
+    public int CuartoActual { get; set; }
     public DateTime FechaPartido { get; set; }
+    
+     public bool Terminado { get; set; } = false;
 }

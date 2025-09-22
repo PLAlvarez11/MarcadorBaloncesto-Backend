@@ -17,14 +17,6 @@ public class PartidosController : ControllerBase
         _partidos = partidos;
     }
 
-    [HttpGet("historial")]
-    [Authorize(Policy = "Partidos.Read")]
-    public async Task<IActionResult> GetHistorial()
-    {
-        var list = await _partidos.GetHistorialAsync();
-        return Ok(list);
-    }
-
     [HttpGet("{id}")]
     [Authorize(Policy = "Partidos.Read")]
     public async Task<IActionResult> GetById(int id)
@@ -49,5 +41,23 @@ public class PartidosController : ControllerBase
         var ok = await _partidos.UpdateMarcadorAsync(id, dto);
         if (!ok) return NotFound();
         return NoContent();
+    }
+
+    [HttpGet("historial")]
+    [Authorize(Policy = "Partidos.Read")]
+    public async Task<IActionResult> GetHistorial()
+    {
+        var result = await _partidos.GetHistorialAsync();
+        return Ok(result);
+    }
+
+    [HttpPut("{id}/terminar")]
+    [Authorize(Policy = "Partidos.Write")]
+    public async Task<IActionResult> Terminar(int id)
+    {
+        var ok = await _partidos.MarcarTerminadoAsync(id);
+        if (!ok) return NotFound();
+
+        return Ok(new { message = "Partido terminado manualmente" });
     }
 }

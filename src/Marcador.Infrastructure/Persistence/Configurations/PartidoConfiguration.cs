@@ -16,6 +16,7 @@ public class PartidoConfiguration : IEntityTypeConfiguration<Partido>
         builder.Property(x => x.FaltasEquipo1).HasDefaultValue(0);
         builder.Property(x => x.FaltasEquipo2).HasDefaultValue(0);
         builder.Property(x => x.CuartoActual).HasDefaultValue(1);
+        builder.Property(x => x.Terminado).HasDefaultValue(false);
 
         builder.HasOne(p => p.Equipo1)
                .WithMany(e => e.PartidosComoLocal)

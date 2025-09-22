@@ -4,7 +4,6 @@ namespace Marcador.Application.Abstractions.Services;
 
 public interface IPartidoService
 {
-    Task<IEnumerable<PartidoDto>> GetHistorialAsync();
     Task<PartidoDto?> GetByIdAsync(int id);
     Task<PartidoDto> CreateAsync(PartidoCreateDto dto);
     Task<bool> UpdateMarcadorAsync(int id, PartidoUpdateDto dto);
@@ -15,4 +14,8 @@ public interface IPartidoService
     Task<bool> AvanzarCuartoAsync(int partidoId);
     Task<bool> ReiniciarMarcadorAsync(int partidoId);
     Task<PartidoDto?> GetMarcadorAsync(int partidoId);
+    Task<IEnumerable<PartidoHistorialDto>> GetHistorialAsync();
+    Task<bool> MarcarTerminadoAsync(int partidoId);
+    Task<bool> UpdateCuartoAsync(int partidoId, int cuarto);
+
 }

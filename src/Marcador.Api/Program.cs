@@ -1,74 +1,15 @@
-using System.Text;
+using Marcador.Api.Extensions;
 using Marcador.Infrastructure;
 using Marcador.Infrastructure.Persistence;
-using Marcador.Infrastructure.Security;
 using Marcador.Infrastructure.Seed;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using FluentValidation;
-using Marcador.Application.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
-
-var jwtSection = builder.Configuration.GetSection("Jwt");
-var key = Encoding.UTF8.GetBytes(jwtSection["Key"]!);
-
-builder.Services
-    .AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = jwtSection["Issuer"],
-            ValidateAudience = true,
-            ValidAudience = jwtSection["Audience"],
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateLifetime = true,
-            ClockSkew = TimeSpan.Zero
-        };
-    });
-
-builder.Services.AddAuthorization(AuthorizationPolicies.AddPolicies);
-
 builder.Services.AddControllers();
-builder.Services.AddValidatorsFromAssemblyContaining<EquipoCreateValidator>();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new() { Title = "Marcador API", Version = "v1" });
-
-    var jwtSecurityScheme = new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-    {
-        BearerFormat = "JWT",
-        Name = "Authorization",
-        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
-        Scheme = "bearer",
-        Description = "Escribe: Bearer {tu token JWT}",
-
-        Reference = new Microsoft.OpenApi.Models.OpenApiReference
-        {
-            Id = JwtBearerDefaults.AuthenticationScheme,
-            Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme
-        }
-    };
-
-    c.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
-    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
-    {
-        { jwtSecurityScheme, Array.Empty<string>() }
-    });
-});
+builder.Services.AddValidation();
+builder.Services.AddJwtAuth(builder.Configuration);
+builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
 
@@ -85,12 +26,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-
-app.MapPost("/setup/seed", async (MarcadorDbContext db, IPasswordHasher hasher) =>
+app.MapPost("/setup/seed", async (MarcadorDbContext db, Marcador.Infrastructure.Security.IPasswordHasher hasher) =>
 {
-    var pwdHash = hasher.Hash("Baloncesto11!");
+    var pwdHash = hasher.Hash("Admin123!");
     await DataSeeder.SeedAsync(db, "admin", pwdHash);
-    return Results.Ok("Seed completado: usuario=admin, pass=Baloncesto11!");
+    return Results.Ok("Seed completado");
 });
 
 app.Run();

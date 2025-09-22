@@ -40,12 +40,25 @@ public class MarcadorController : ControllerBase
         return ok ? Ok() : NotFound();
     }
 
-    [HttpPost("{partidoId}/cuarto")]
+    [HttpPost("{partidoId}/avanzar-cuarto")]
     [Authorize(Policy = "Partidos.Write")]
     public async Task<IActionResult> AvanzarCuarto(int partidoId)
     {
-        var ok = await _partidos.AvanzarCuartoAsync(partidoId);
-        return ok ? Ok() : NotFound();
+        var partido = await _partidos.GetByIdAsync(partidoId);
+        if (partido == null) return NotFound();
+
+        if (partido.CuartoActual < 4)
+        {
+            partido.CuartoActual++;
+        }
+        else
+        {
+            await _partidos.MarcarTerminadoAsync(partidoId);
+            return Ok(new { message = "Partido finalizado automáticamente al terminar el 4º cuarto" });
+        }
+
+        await _partidos.UpdateCuartoAsync(partido.Id, partido.CuartoActual);
+        return Ok(new { message = $"Avanzó al cuarto {partido.CuartoActual}" });
     }
 
     [HttpPost("{partidoId}/reiniciar")]
@@ -63,5 +76,15 @@ public class MarcadorController : ControllerBase
         var marcador = await _partidos.GetMarcadorAsync(partidoId);
         if (marcador == null) return NotFound();
         return Ok(marcador);
+    }
+
+    [HttpPost("{partidoId}/finalizar")]
+    [Authorize(Policy = "Partidos.Write")]
+    public async Task<IActionResult> FinalizarPartido(int partidoId)
+    {
+        var ok = await _partidos.MarcarTerminadoAsync(partidoId);
+        if (!ok) return NotFound();
+
+        return Ok(new { message = "Partido marcado como terminado" });
     }
 }
