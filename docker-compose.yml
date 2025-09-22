@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: marcador-sql
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Baloncesto11!
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  backend:
+    build:
+      context: ./src/Marcador.Api
+    container_name: marcador-api
+    ports:
+      - "5066:8080"
+    environment:
+      - ConnectionStrings__Default=Server=sqlserver,1433;Database=MarcadorDB;User Id=sa;Password=Baloncesto11!;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
+
+volumes:
+  sql_data:
