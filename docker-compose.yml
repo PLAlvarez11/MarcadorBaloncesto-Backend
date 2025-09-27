@@ -14,7 +14,8 @@ services:
 
   backend:
     build:
-      context: ./src/Marcador.Api
+      context: .
+      dockerfile: src/Marcador.Api/Dockerfile
     container_name: marcador-api
     ports:
       - "5066:8080"
