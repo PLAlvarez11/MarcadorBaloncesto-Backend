@@ -1,6 +1,7 @@
 # 🏀 Marcador Baloncesto - Backend
 
 Backend del sistema **Marcador de Baloncesto**, pensado para gestionar equipos, partidos y marcadores en tiempo real.  
+En esta documentación se presenta lo que es un sistema de Marcador de Baloncesto, una aplicación en tiempo real desarrollada con .NET 8.0 que permite la puntuación de partidos en vivo, la gestión de equipos y la administración de jugadores. El sistema sigue los principios de la Arquitectura Limpia y proporciona una API REST para gestionar partidos de baloncesto, equipos, jugadores y la autenticación de usuarios.
 
 ---
 
