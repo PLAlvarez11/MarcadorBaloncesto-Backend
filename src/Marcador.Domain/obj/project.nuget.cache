@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vcTI0EynwOE=",
+  "dgSpecHash": "G2n0fLp9tTU=",
   "success": true,
-  "projectFilePath": "C:\\Proyectos\\MarcadorBaloncesto-Backend\\src\\Marcador.Domain\\Marcador.Domain.csproj",
+  "projectFilePath": "C:\\proyectos\\MarcadorBaloncesto-Backend\\src\\Marcador.Domain\\Marcador.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

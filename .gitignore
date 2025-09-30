@@ -482,3 +482,87 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+## Build results
+src/**/[Bb]in/
+src/**/[Oo]bj/
+src/**/[Ll]og/
+src/**/[Ll]ogs/
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Compilados y paquetes
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.dbmdl
+*.appx
+
+# NuGet
+*.nupkg
+*.snupkg
+src/**/[Pp]ackages/*
+!src/**/[Pp]ackages/build/
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Entity Framework
+src/**/Migrations/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Docker
+docker-compose.override.yml
+.docker/
+**/docker-compose*.yaml
+**/docker-compose*.yml
+
+# Tye
+.tye/
+
+# Test / Coverage
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+*.opencover.xml
+*.cobertura.xml
+coverage/
+
+# Logs
+*.log
+*.err
+*.out
+
+# OS generated files
+ehthumbs.db
+Icon?
+Thumbs.db
+.DS_Store
+*.swp
+
+# Node / Angular (si tienes frontend en el mismo repo)
+node_modules/
+wwwroot/lib/
+dist/
+
+# Ignorar compilados en cualquier proyecto dentro de src/
+src/**/[Bb]in/
+src/**/[Oo]bj/

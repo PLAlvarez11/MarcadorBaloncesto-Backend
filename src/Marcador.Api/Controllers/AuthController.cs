@@ -23,7 +23,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Login([FromBody] LoginRequestDto dto)
     {
         var result = await _auth.LoginAsync(dto);
-        if (result is null) return Unauthorized(new { message = "Credenciales inválidas" });
+        if (result is null) return Unauthorized(new { message = "Credenciales malas" });
         return Ok(result);
     }
 
