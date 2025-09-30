@@ -2,6 +2,7 @@ using Marcador.Api.Extensions;
 using Marcador.Infrastructure;
 using Marcador.Infrastructure.Persistence;
 using Marcador.Infrastructure.Seed;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +11,14 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngular",
         policy =>
         {
-            policy.WithOrigins("http://129.212.189.102:4200") 
+            policy.WithOrigins("http://129.212.189.102:4200")
+                .AllowAnyOrigin() 
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
 });
+
+
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
@@ -23,6 +27,19 @@ builder.Services.AddJwtAuth(builder.Configuration);
 builder.Services.AddSwaggerDocumentation();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<MarcadorDbContext>();
+    try
+    {
+        db.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"No se pudo migrar la base de datos: {ex.Message}");
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {
