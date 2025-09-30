@@ -5,19 +5,15 @@ using Marcador.Infrastructure.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración de CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend", policy =>
-    {
-        policy.WithOrigins(
-                "http://localhost:4200",
-                "http://129.212.189.102:4200",
-                "http://129.212.189.102")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
-    });
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy.WithOrigins("http://129.212.189.102:4200") 
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
 });
 
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -35,7 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAngular");
 
 
 // app.UseHttpsRedirection();
