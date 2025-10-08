@@ -1,34 +1,78 @@
 version: "3.9"
 
 services:
-  marcador-sql:
+  sql2022:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: marcador-sql
+    container_name: sql2022
+    restart: always
     environment:
-      SA_PASSWORD: "Baloncesto11!"
-      ACCEPT_EULA: "Y"
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${SA_PASSWORD:-Baloncesto11!}
     ports:
       - "1433:1433"
     volumes:
       - sql_data:/var/opt/mssql
+    networks:
+      - marcador-net
 
-  backend:
-    image: plalvarez11/marcador-baloncesto-docker:latest
+  marcador-api:
+    build:
+      context: ./src/Marcador.Api
+      dockerfile: Dockerfile
     container_name: marcador-api
-    ports:
-      - "5000:8080"
+    restart: always
+    depends_on:
+      - sql2022
     environment:
-      - ConnectionStrings__SqlServer=Server=marcador-sql,1433;Database=MarcadorDb;User Id=sa;Password=Baloncesto11!;TrustServerCertificate=True;
-    depends_on:
-      - marcador-sql
-
-  frontend:
-    image: plalvarez11/marcador-baloncesto-fe:latest
-    container_name: marcador-api-fe
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__SqlServer=Server=sql2022,1433;Database=MarcadorDb;User Id=sa;Password=${SA_PASSWORD:-TuPassword123!};TrustServerCertificate=True;
+      - Jwt__Issuer=${JWT_ISSUER:-MarcadorApi}
+      - Jwt__Audience=${JWT_AUDIENCE:-MarcadorFrontend}
+      - Jwt__Key=${JWT_KEY:-super_secret_dev_key_change_me}
     ports:
-      - "4200:80"
+      - "5066:8080"
+    networks:
+      - marcador-net
+
+  marcador-reports:
+    build:
+      context: ./src/marcador-reports
+      dockerfile: Dockerfile
+    container_name: marcador-reports
+    restart: always
     depends_on:
-      - backend
+      - sql2022
+    environment:
+      - SQLSERVER__HOST=sql2022
+      - SQLSERVER__PORT=1433
+      - SQLSERVER__DB=MarcadorDb
+      - SQLSERVER__USER=sa
+      - SQLSERVER__PASSWORD=${SA_PASSWORD:-TuPassword123!}
+      - JWT__ISSUER=${JWT_ISSUER:-MarcadorApi}
+      - JWT__AUDIENCE=${JWT_AUDIENCE:-MarcadorFrontend}
+      - JWT__KEY=${JWT_KEY:-super_secret_dev_key_change_me}
+    ports:
+      - "8081:8081"
+    networks:
+      - marcador-net
+
+  nginx:
+    image: nginx:latest
+    container_name: marcador-nginx
+    restart: always
+    depends_on:
+      - marcador-api
+      - marcador-reports
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - marcador-net
 
 volumes:
   sql_data:
+
+networks:
+  marcador-net:
+    driver: bridge

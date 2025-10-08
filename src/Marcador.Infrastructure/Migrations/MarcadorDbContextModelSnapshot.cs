@@ -93,6 +93,56 @@ namespace Marcador.Infrastructure.Migrations
                     b.ToTable("Equipos", (string)null);
                 });
 
+            modelBuilder.Entity("Marcador.Domain.Entities.EstadisticaJugadorPartido", b =>
+                {
+                    b.Property<int>("PartidoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JugadorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Asistencias")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("Faltas")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("Puntos")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("RebotesDef")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("RebotesOf")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("Robos")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("Tapones")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.HasKey("PartidoId", "JugadorId");
+
+                    b.HasIndex("JugadorId");
+
+                    b.ToTable("EstadisticaJugadorPartido", (string)null);
+                });
+
             modelBuilder.Entity("Marcador.Domain.Entities.Jugador", b =>
                 {
                     b.Property<int>("Id")
@@ -407,6 +457,25 @@ namespace Marcador.Infrastructure.Migrations
                     b.HasIndex("RolId");
 
                     b.ToTable("Usuarios", (string)null);
+                });
+
+            modelBuilder.Entity("Marcador.Domain.Entities.EstadisticaJugadorPartido", b =>
+                {
+                    b.HasOne("Marcador.Domain.Entities.Jugador", "Jugador")
+                        .WithMany()
+                        .HasForeignKey("JugadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Marcador.Domain.Entities.Partido", "Partido")
+                        .WithMany()
+                        .HasForeignKey("PartidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Jugador");
+
+                    b.Navigation("Partido");
                 });
 
             modelBuilder.Entity("Marcador.Domain.Entities.Jugador", b =>

@@ -16,7 +16,8 @@ public class MarcadorDbContext : DbContext
     public DbSet<Jugador> Jugadores => Set<Jugador>();
     public DbSet<Partido> Partidos => Set<Partido>();
     public DbSet<Logo> Logos => Set<Logo>();
-    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();    
+    public DbSet<EstadisticaJugadorPartido> EstadisticaJugadorPartido => Set<EstadisticaJugadorPartido>();
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
