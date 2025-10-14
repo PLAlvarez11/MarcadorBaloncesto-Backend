@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "bXrnajx0Vjs=",
+  "dgSpecHash": "7x238n1z9Jo=",
   "success": true,
-  "projectFilePath": "C:\\proyectos\\MarcadorBaloncesto-Backend\\src\\Marcador.Application\\Marcador.Application.csproj",
+  "projectFilePath": "C:\\Users\\Mel\\Documents\\Universidad2025\\proyect\\MarcadorBaloncesto-Backend\\src\\Marcador.Application\\Marcador.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\pluis\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
-    "C:\\Users\\pluis\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
-    "C:\\Users\\pluis\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
-    "C:\\Users\\pluis\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
-    "C:\\Users\\pluis\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
-    "C:\\Users\\pluis\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+    "C:\\Users\\Mel\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
+    "C:\\Users\\Mel\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
+    "C:\\Users\\Mel\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "C:\\Users\\Mel\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
+    "C:\\Users\\Mel\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
+    "C:\\Users\\Mel\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
   ],
   "logs": []
 }
