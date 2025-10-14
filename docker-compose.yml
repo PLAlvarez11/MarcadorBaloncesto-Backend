@@ -17,7 +17,7 @@ services:
 
   marcador-api:
     build:
-      context: ./src/Marcador.Api
+      context: . 
       dockerfile: Dockerfile
     container_name: marcador-api
     restart: always
@@ -30,7 +30,7 @@ services:
       - Jwt__Audience=${JWT_AUDIENCE:-MarcadorFrontend}
       - Jwt__Key=${JWT_KEY:-super_secret_dev_key_change_me}
     ports:
-      - "5066:8080"
+      - "8080:8080"
     networks:
       - marcador-net
 
